@@ -151,6 +151,60 @@ Now you can run it from anywhere
 Caffeine
 ```
 
+### Creating a Desktop Icon and Making Caffeine Available in the Application Menu
+
+1. Copy the Executable
+```
+sudo cp dist/Caffeine /usr/local/bin/caffeine
+sudo chmod +x /usr/local/bin/caffeine
+```
+
+2. Copy the Icon
+```
+# Create the directory for app icons
+sudo mkdir -p /usr/share/icons/hicolor/scalable/apps
+
+# Copy the icon
+sudo cp icons/coffee-to.go.svg /usr/share/icons/hicolor/scalable/apps/
+```
+
+3. Create the Desktop Entry
+Create the `.desktop` file:
+```
+sudo nano /usr/share/applications/caffeine.desktop
+```
+
+Insert this content:
+```
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Caffeine
+Comment=Prevent your system from going to sleep
+Icon=coffee-to-go
+Exec=/usr/local/bin/caffeine
+Terminal=false
+Categories=Utility;System;
+Keywords=caffeine;sleep;awake;screensaver;
+StartupNotify=false
+```
+
+4. Update the Icon Cache
+```
+sudo update-desktop-database /usr/share/applications
+sudo gtk-update-icon-cache /usr/share/icons/hicolor -f
+```
+
+**Final Structure:**
+```
+/usr/local/bin/caffeine                                 # Executable
+/usr/share/icons/hicolor/scalable/apps/coffee-to-go.svg # Icon
+~/.local/share/applications/caffeine.desktop            # Desktop entry
+```
+
+After these steps, search for "Caffeine" in your application menu - it should appear in the "System Tools" category.
+
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
