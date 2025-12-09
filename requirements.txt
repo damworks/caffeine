@@ -1,0 +1,3 @@
+wakepy>=0.9.0
+pyautogui
+PyGObject
